@@ -19,7 +19,7 @@
     - Write tests for storage operations
     - _Requirements: 1.3, 6.3_
 
-- [-] 3. Create database adapters
+- [x] 3. Create database adapters
   - [x] 3.1 Implement base database adapter interface
     - Create abstract DatabaseAdapter class
     - Define common methods for connect, disconnect, query, schema
@@ -40,51 +40,51 @@
     - Write unit tests with mock PostgreSQL connections
     - _Requirements: 3.1, 4.1, 5.1_
 
-- [ ] 4. Create main process IPC handlers
-  - [ ] 4.1 Implement database manager
+- [x] 4. Create main process IPC handlers
+  - [x] 4.1 Implement database manager
     - Create DatabaseManager class to coordinate adapters
     - Add connection pooling and status tracking
     - Implement query execution with timeout handling
     - Add connection cleanup on app exit
     - _Requirements: 3.1, 3.4, 4.4_
-  - [ ] 4.2 Setup IPC handlers in main process
+  - [x] 4.2 Setup IPC handlers in main process
     - Register all database IPC handlers in main/index.ts
     - Implement connection management handlers (connect, disconnect, test)
     - Implement query execution handlers with error handling
     - Add schema introspection handlers
     - _Requirements: 3.1, 4.1, 5.1_
 
-- [ ] 5. Update preload script with typed API
+- [x] 5. Update preload script with typed API
   - Add properly typed database API to preload script
   - Fix TypeScript type issues for IPC parameters
   - Create type-safe bridge between renderer and main
   - _Requirements: 3.1, 4.1_
 
 - [ ] 6. Create Zustand stores for state management
-  - [ ] 6.1 Implement connection store
+  - [x] 6.1 Implement connection store
     - Create connection store with CRUD operations
     - Add connection status management
     - Implement IPC integration for connection operations
     - _Requirements: 1.1, 2.1, 3.1_
-  - [ ] 6.2 Implement database store
+  - [x] 6.2 Implement database store
     - Create database store for schema and table data
     - Add selected object tracking (table, view, function)
     - Implement data loading and caching
     - _Requirements: 5.1, 4.1_
-  - [ ] 6.3 Create UI store
+  - [x] 6.3 Create UI store
     - Implement sidebar visibility states
     - Add row selection and detail sheet management
     - Create loading and error state management
     - _Requirements: 2.1, 4.1_
 
 - [ ] 7. Build left sidebar components
-  - [ ] 7.1 Create connection sidebar layout
+  - [x] 7.1 Create connection sidebar layout
     - Build fixed left sidebar with connection list
     - Add connection icons with database type indicators
     - Implement hover tooltips for connection names
     - Add settings button at bottom
     - _Requirements: 2.1, 2.2_
-  - [ ] 7.2 Implement connection management
+  - [x] 7.2 Implement connection management
     - Create add connection button and modal
     - Build connection form with validation
     - Add connection status indicators (connected/disconnected)
