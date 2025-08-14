@@ -55,9 +55,9 @@
     - _Requirements: 3.1, 4.1, 5.1_
 
 - [x] 5. Update preload script with typed API
-  - [ ] Add properly typed database API to preload script
-  - [ ] Fix TypeScript type issues for IPC parameters
-  - [ ] Create type-safe bridge between renderer and main
+  - [x] Add properly typed database API to preload script
+  - [x] Fix TypeScript type issues for IPC parameters
+  - [x] Create type-safe bridge between renderer and main
   - _Requirements: 3.1, 4.1_
 
 - [ ] 6. Create Zustand stores for state management
