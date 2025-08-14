@@ -18,6 +18,10 @@ export class DatabaseManager {
   private connectionStatuses: Map<string, ConnectionStatus> = new Map()
   private queryTimeouts: Map<string, NodeJS.Timeout> = new Map()
   private readonly defaultQueryTimeout = 30000 // 30 seconds
+  private readonly defaultConnectionTimeout = 10000 // 10 seconds
+  private readonly defaultIdleTimeout = 5 * 60 * 1000 // 5 minutes
+  private idleTimers: Map<string, NodeJS.Timeout> = new Map()
+  private healthCheckTimers: Map<string, NodeJS.Timeout> = new Map()
   private readonly maxConnections = 10
   private cleanupHandlers: (() => Promise<void>)[] = []
 
@@ -52,6 +56,10 @@ export class DatabaseManager {
       // Update status from adapter
       const status = adapter.getConnectionStatus()
       this.connectionStatuses.set(connection.id, status)
+
+      // Start idle timer and health checks
+      this.startIdleTimer(connection.id, connection.idleTimeoutMs ?? this.defaultIdleTimeout)
+      this.startHealthCheck(connection.id, connection.healthCheckIntervalMs ?? 30_000)
 
       return status
     } catch (error) {
@@ -95,8 +103,10 @@ export class DatabaseManager {
       const status = adapter.getConnectionStatus()
       this.connectionStatuses.set(connectionId, status)
 
-      // Remove from connections
+      // Remove from connections and clear timers
       this.connections.delete(connectionId)
+      this.clearIdleTimer(connectionId)
+      this.clearHealthCheck(connectionId)
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown disconnection error'
       this.updateConnectionStatus(connectionId, 'error', errorMessage)
@@ -155,6 +165,9 @@ export class DatabaseManager {
 
       // Clear timeout
       this.clearQueryTimeout(connectionId)
+
+      // Reset idle timer on activity
+      this.resetIdleTimer(connectionId)
 
       return result
     } catch (error) {
@@ -446,6 +459,72 @@ export class DatabaseManager {
       await cleanup()
       process.exit(1)
     })
+  }
+
+  // Idle handling and health checks
+  private startIdleTimer(connectionId: string, idleTimeoutMs: number): void {
+    this.clearIdleTimer(connectionId)
+    const timer = setTimeout(async () => {
+      try {
+        await this.disconnect(connectionId)
+        console.log(`Disconnected idle connection ${connectionId}`)
+      } catch (e) {
+        console.error('Idle disconnect failed', e)
+      }
+    }, idleTimeoutMs)
+    this.idleTimers.set(connectionId, timer)
+  }
+
+  private resetIdleTimer(connectionId: string): void {
+    const currentStatus = this.connectionStatuses.get(connectionId)
+    if (!currentStatus || currentStatus.status !== 'connected') return
+    const idle = this.idleTimers.get(connectionId)
+    if (idle) {
+      clearTimeout(idle)
+    }
+    // Default to 5 mins on reset; if a custom idle timeout is needed, caller should call startIdleTimer
+    this.startIdleTimer(connectionId, this.defaultIdleTimeout)
+  }
+
+  private clearIdleTimer(connectionId: string): void {
+    const idle = this.idleTimers.get(connectionId)
+    if (idle) {
+      clearTimeout(idle)
+      this.idleTimers.delete(connectionId)
+    }
+  }
+
+  private startHealthCheck(connectionId: string, intervalMs: number): void {
+    this.clearHealthCheck(connectionId)
+    const timer = setInterval(() => {
+      const isActive = this.isConnectionActive(connectionId)
+      if (!isActive) return
+      // For now, health check = lightweight query
+      const adapter = this.connections.get(connectionId)
+      if (!adapter) return
+      adapter
+        .executeQuery('SELECT 1')
+        .then(() => {
+          // OK
+        })
+        .catch(async (e) => {
+          console.error(`Health check failed for ${connectionId}`, e)
+          try {
+            await this.disconnect(connectionId)
+          } catch (err) {
+            console.error('Error disconnecting after health check failure', err)
+          }
+        })
+    }, intervalMs)
+    this.healthCheckTimers.set(connectionId, timer as unknown as NodeJS.Timeout)
+  }
+
+  private clearHealthCheck(connectionId: string): void {
+    const timer = this.healthCheckTimers.get(connectionId)
+    if (timer) {
+      clearInterval(timer as unknown as NodeJS.Timeout)
+      this.healthCheckTimers.delete(connectionId)
+    }
   }
 }
 

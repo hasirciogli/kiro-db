@@ -184,10 +184,10 @@
   - _Requirements: 1.2, 3.1_
 
 - [ ] 16. Add connection timeout and auto-cleanup
-  - Implement connection timeout configuration
-  - Add automatic connection cleanup on app exit
-  - Create idle connection detection and cleanup
-  - Add connection health monitoring
+  - [x] Implement connection timeout configuration
+  - [x] Add automatic connection cleanup on app exit
+  - [x] Create idle connection detection and cleanup
+  - [x] Add connection health monitoring
   - _Requirements: 3.5, 6.4_
 
 - [ ] 17. Implement query cancellation

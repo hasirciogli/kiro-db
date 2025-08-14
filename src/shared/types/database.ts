@@ -10,6 +10,11 @@ export interface DatabaseConnection {
   username: string
   password: string // Encrypted in storage
   ssl?: boolean
+  // Optional timeouts/configuration
+  connectionTimeoutMs?: number
+  queryTimeoutMs?: number
+  idleTimeoutMs?: number
+  healthCheckIntervalMs?: number
   createdAt: Date
   updatedAt: Date
 }
