@@ -1,14 +1,9 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
-import { Button } from './components/ui/button'
 import { ThemeProvider } from './components/theme-provider'
-import { StaticLayoutSidebarItem } from './components/static-left-sidebar/item'
 import { StaticLeftBar } from './components/static-left-sidebar/layout'
 import { SettingsDialogBase } from './components/settings'
+import { AddConnectionDialog } from './components/connections/AddConnectionDialog'
 
 function App(): React.JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
-
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <main className="w-full h-full bg-primary">
@@ -17,6 +12,7 @@ function App(): React.JSX.Element {
 
       {/* Modals or others */}
       <SettingsDialogBase />
+      <AddConnectionDialog />
     </ThemeProvider>
   )
 }

@@ -4,7 +4,7 @@ import { DatabaseConnection, ConnectionStatus, QueryResult, DatabaseSchema } fro
 // IPC API Interface
 export interface DatabaseAPI {
   // Connection Management
-  saveConnection(connection: Omit<DatabaseConnection, 'id'>): Promise<string>
+  saveConnection(connection: Omit<DatabaseConnection, 'id' | 'createdAt' | 'updatedAt'>): Promise<string>
   updateConnection(id: string, connection: Partial<DatabaseConnection>): Promise<void>
   deleteConnection(id: string): Promise<void>
   getConnections(): Promise<DatabaseConnection[]>
@@ -12,7 +12,7 @@ export interface DatabaseAPI {
   // Database Operations
   connect(id: string): Promise<ConnectionStatus>
   disconnect(id: string): Promise<void>
-  testConnection(connection: Omit<DatabaseConnection, 'id'>): Promise<boolean>
+  testConnection(connection: Omit<DatabaseConnection, 'id' | 'createdAt' | 'updatedAt'>): Promise<boolean>
 
   // Query Operations
   executeQuery(connectionId: string, sql: string, params?: any[]): Promise<QueryResult>
