@@ -72,9 +72,9 @@
     - [x] Implement data loading and caching
     - _Requirements: 5.1, 4.1_
   - [x] 6.3 Create UI store
-    - [ ] Implement sidebar visibility states
-    - [ ] Add row selection and detail sheet management
-    - [ ] Create loading and error state management
+    - [x] Implement sidebar visibility states
+    - [x] Add row selection and detail sheet management
+    - [x] Create loading and error state management
     - _Requirements: 2.1, 4.1_
 
 - [ ] 7. Build left sidebar components
