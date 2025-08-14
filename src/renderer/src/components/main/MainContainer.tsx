@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TopBar } from './TopBar'
 import { QueryEditor } from './QueryEditor'
 import { DataTable } from './DataTable'
@@ -12,7 +12,9 @@ import { useQueryHistory } from '../../stores/history'
 export const MainContainer = () => {
 	const [sql, setSql] = useState('SELECT 1;')
 	const activeConnectionId = useConnectionStore((s) => s.activeConnectionId)
-	const { executeQuery, selectedTable, loadTableData } = useDatabaseStore()
+  const { executeQuery, selectedTable, loadTableData } = useDatabaseStore()
+  const page = useDatabaseStore((s) => s.page)
+  const pageSize = useDatabaseStore((s) => s.pageSize)
 	const addHistory = useQueryHistory((s) => s.addQuery)
 
 	const onExecute = async () => {
@@ -37,10 +39,12 @@ export const MainContainer = () => {
 		}
 	}
 
-	// Auto-load when selecting a table
-	if (activeConnectionId && selectedTable) {
-		void loadTableData(activeConnectionId, selectedTable)
-	}
+  // Auto-load when selecting a table or changing pagination
+  useEffect(() => {
+    if (activeConnectionId && selectedTable) {
+      void loadTableData(activeConnectionId, selectedTable)
+    }
+  }, [activeConnectionId, selectedTable, page, pageSize, loadTableData])
 
 	return (
 		<div className="flex flex-col h-screen w-full">

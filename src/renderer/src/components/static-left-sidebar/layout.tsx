@@ -30,15 +30,15 @@ export const StaticLeftBar = () => {
           <ConnectionContextMenu
             key={c.id}
             onConnect={() => {
-              setActiveConnection(c.id)
-                ; (async () => {
-                  try {
-                    await connect(c.id)
-                    toast.success(`Connected to ${c.name}`)
-                  } catch (e: any) {
-                    toast.error(e?.message ?? `Failed to connect to ${c.name}`)
-                  }
-                })()
+              setActiveConnection(c.id);
+              (async () => {
+                try {
+                  await connect(c.id)
+                  toast.success(`Connected to ${c.name}`)
+                } catch (e: any) {
+                  toast.error(e?.message ?? `Failed to connect to ${c.name}`)
+                }
+              })()
             }}
             onDelete={() => askDeleteConnection(c.id)}
             onTest={() => {
