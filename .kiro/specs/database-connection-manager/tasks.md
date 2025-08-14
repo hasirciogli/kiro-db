@@ -139,14 +139,14 @@
 
 - [ ] 11. Implement connection form and dialogs
   - [x] 11.1 Create connection form component
-    - [ ] Build form with all connection fields (host, port, database, etc.)
-    - [ ] Add form validation using react-hook-form and zod
-    - [ ] Implement password masking and visibility toggle
-    - [ ] Add connection test functionality
+    - [x] Build form with all connection fields (host, port, database, etc.)
+    - [x] Add form validation using react-hook-form and zod
+    - [x] Implement password masking and visibility toggle
+    - [x] Add connection test functionality
     - _Requirements: 1.1, 1.4, 1.5_
   - [x] 11.2 Add connection management dialogs
-    - [ ] Create confirmation dialogs for connection deletion
-    - [ ] Implement edit connection modal
+    - [x] Create confirmation dialogs for connection deletion
+    - [x] Implement edit connection modal
     - [ ] Add connection status notifications
     - _Requirements: 2.4, 2.5, 3.3_
 

@@ -4,6 +4,7 @@ import { useConnectionStore } from '../../stores/connection'
 import { useEffect } from 'react'
 import { ConnectionIcon } from './connection-icon'
 import { ConnectionContextMenu } from './connection-context-menu'
+import { useUIStore } from '../../stores/ui'
 
 export const StaticLeftBar = () => {
   const {
@@ -15,6 +16,7 @@ export const StaticLeftBar = () => {
     deleteConnection,
     testConnection
   } = useConnectionStore()
+  const { openEditConnection, askDeleteConnection } = useUIStore()
 
   useEffect(() => {
     void loadConnections()
@@ -31,7 +33,7 @@ export const StaticLeftBar = () => {
               setActiveConnection(c.id)
               void connect(c.id)
             }}
-            onDelete={() => void deleteConnection(c.id)}
+            onDelete={() => askDeleteConnection(c.id)}
             onTest={() =>
               void testConnection({
                 name: c.name,
@@ -44,6 +46,7 @@ export const StaticLeftBar = () => {
                 ssl: c.ssl
               } as any)
             }
+            onEdit={() => openEditConnection(c.id)}
           >
             <ConnectionIcon
               label={c.name}

@@ -5,6 +5,8 @@ import { AddConnectionDialog } from './components/connections/AddConnectionDialo
 import { DatabaseSidebar } from './components/database/DatabaseSidebar'
 import { MainContainer } from './components/main/MainContainer'
 import { Toaster } from './components/ui/sonner'
+import { EditConnectionDialog } from './components/connections/EditConnectionDialog'
+import { DeleteConnectionDialog } from './components/connections/DeleteConnectionDialog'
 
 function App(): React.JSX.Element {
   return (
@@ -18,6 +20,8 @@ function App(): React.JSX.Element {
       {/* Modals or others */}
       <SettingsDialogBase />
       <AddConnectionDialog />
+      <EditConnectionDialog />
+      <DeleteConnectionDialog />
       <Toaster richColors position="bottom-right" />
     </ThemeProvider>
   )
