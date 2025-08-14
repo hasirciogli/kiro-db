@@ -19,7 +19,7 @@ interface DatabaseStoreState {
     { rows: any[]; fields: { name: string; type: string; length?: number }[]; totalRows: number }
   >
 
-  loadSchema: (connectionId: string) => Promise<void>
+  loadSchema: (connectionId: string, force?: boolean) => Promise<void>
   selectTable: (tableName: string | null) => Promise<void>
   selectObject: (object: DatabaseObject | null) => void
   loadTableData: (connectionId: string, tableName: string) => Promise<void>
@@ -44,10 +44,10 @@ export const useDatabaseStore = create<DatabaseStoreState>((set, get) => ({
   totalRows: null,
   resultCache: {},
 
-  loadSchema: async (connectionId) => {
+  loadSchema: async (connectionId, force) => {
     // Avoid refetch if same connection schema is already loaded
     const state = get()
-    if (state.schema && state.currentSchemaConnectionId === connectionId) {
+    if (!force && state.schema && state.currentSchemaConnectionId === connectionId) {
       return
     }
     set({ loading: true, error: null })

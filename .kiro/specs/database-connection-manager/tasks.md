@@ -93,15 +93,15 @@
 
 - [ ] 8. Build database sidebar components
   - [x] 8.1 Create database object sidebar
-    - [ ] Build collapsible sections for tables, views, functions, procedures
-    - [ ] dd database object icons and names
-    - [ ] Implement object selection and highlighting
-    - [ ] Add loading states for schema loading
+    - [x] Build collapsible sections for tables, views, functions, procedures (basic lists)
+    - [x] Add database object icons and names (basic icons via list items)
+    - [x] Implement object selection and highlighting
+    - [x] Add loading states for schema loading (store loading state)
     - _Requirements: 5.1, 5.4_
   - [x] 8.2 Add database object interactions
-    - [ ] Implement click handlers for object selection
-    - [ ] Add context menus for database objects
-    - [ ] Create refresh schema functionality
+    - [x] Implement click handlers for object selection
+    - [x] Add context menus for database objects
+    - [x] Create refresh schema functionality
     - _Requirements: 5.1, 5.2_
 
 - [ ] 9. Create main container components

@@ -7,7 +7,7 @@ import { ScrollArea } from '../ui/scroll-area'
 
 export const DatabaseSidebar = () => {
 	const activeConnectionId = useConnectionStore((s) => s.activeConnectionId)
-	const { schema, loadSchema, selectTable, selectedTable } = useDatabaseStore()
+    const { schema, loadSchema, selectTable, selectedTable } = useDatabaseStore()
 
 	useEffect(() => {
 		if (activeConnectionId) {
@@ -39,7 +39,7 @@ export const DatabaseSidebar = () => {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent side="right">
                                 <DropdownMenuItem onClick={() => void selectTable(t.name)}>Open</DropdownMenuItem>
-                                <DropdownMenuItem disabled>Refresh</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => void loadSchema(activeConnectionId, true)}>Refresh schema</DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     ))}
