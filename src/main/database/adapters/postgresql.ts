@@ -31,7 +31,7 @@ export class PostgreSQLAdapter extends DatabaseAdapter {
         user: this.config.username,
         password: this.config.password,
         database: this.config.database,
-        ssl: this.config.ssl ? { rejectUnauthorized: false } : false,
+        ssl: this.config.ssl ? { rejectUnauthorized: true } : false,
         connectionTimeoutMillis: 10000,
         query_timeout: this.queryTimeout
       }
