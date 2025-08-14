@@ -12,7 +12,6 @@
     - Create key generation and management functions
     - Write unit tests for encryption/decryption
     - _Requirements: 6.1, 6.2, 6.5_
-  
   - [x] 2.2 Implement local storage manager
     - Create app data directory structure
     - Implement JSON file storage with encryption
@@ -26,7 +25,6 @@
     - Define common methods for connect, disconnect, query, schema
     - Add connection status management
     - _Requirements: 3.1, 3.2, 4.1_
-  
   - [x] 3.2 Implement MySQL adapter
     - Create MySQLAdapter class extending base adapter
     - Implement connection management using mysql2
@@ -34,8 +32,7 @@
     - Implement schema introspection for MySQL
     - Write unit tests with mock MySQL connections
     - _Requirements: 3.1, 4.1, 5.1_
-  
-  - [ ] 3.3 Implement PostgreSQL adapter
+  - [x] 3.3 Implement PostgreSQL adapter
     - Create PostgreSQLAdapter class extending base adapter
     - Implement connection management using pg
     - Add query execution and result formatting
@@ -50,7 +47,6 @@
     - Implement query execution with timeout handling
     - Add connection cleanup on app exit
     - _Requirements: 3.1, 3.4, 4.4_
-  
   - [ ] 4.2 Setup IPC handlers in main process
     - Register all database IPC handlers in main/index.ts
     - Implement connection management handlers (connect, disconnect, test)
@@ -70,13 +66,11 @@
     - Add connection status management
     - Implement IPC integration for connection operations
     - _Requirements: 1.1, 2.1, 3.1_
-  
   - [ ] 6.2 Implement database store
     - Create database store for schema and table data
     - Add selected object tracking (table, view, function)
     - Implement data loading and caching
     - _Requirements: 5.1, 4.1_
-  
   - [ ] 6.3 Create UI store
     - Implement sidebar visibility states
     - Add row selection and detail sheet management
@@ -90,7 +84,6 @@
     - Implement hover tooltips for connection names
     - Add settings button at bottom
     - _Requirements: 2.1, 2.2_
-  
   - [ ] 7.2 Implement connection management
     - Create add connection button and modal
     - Build connection form with validation
@@ -105,7 +98,6 @@
     - Implement object selection and highlighting
     - Add loading states for schema loading
     - _Requirements: 5.1, 5.4_
-  
   - [ ] 8.2 Add database object interactions
     - Implement click handlers for object selection
     - Add context menus for database objects
@@ -118,14 +110,12 @@
     - Add context-specific action buttons (Execute SQL, Add Row, etc.)
     - Implement button state management based on selection
     - _Requirements: 4.1, 2.1_
-  
   - [ ] 9.2 Implement data table component
     - Create data table for displaying table contents
     - Add column headers with type information
     - Implement row selection and highlighting
     - Add pagination for large datasets
     - _Requirements: 4.2, 4.5, 2.2_
-  
   - [ ] 9.3 Build query editor
     - Create SQL query editor with syntax highlighting
     - Add query execution button and loading states
@@ -140,7 +130,6 @@
     - Add save and cancel buttons
     - Implement form validation
     - _Requirements: 4.1, 2.2_
-  
   - [ ] 10.2 Add row CRUD operations
     - Implement row update functionality
     - Add row deletion with confirmation
@@ -155,7 +144,6 @@
     - Implement password masking and visibility toggle
     - Add connection test functionality
     - _Requirements: 1.1, 1.4, 1.5_
-  
   - [ ] 11.2 Add connection management dialogs
     - Create confirmation dialogs for connection deletion
     - Implement edit connection modal
@@ -168,7 +156,6 @@
     - Add toast notifications for errors
     - Implement retry mechanisms for failed operations
     - _Requirements: 3.3, 4.3, 5.5_
-  
   - [ ] 12.2 Add loading states throughout UI
     - Implement loading spinners for all async operations
     - Add skeleton loaders for data tables
