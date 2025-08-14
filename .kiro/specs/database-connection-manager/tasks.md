@@ -191,31 +191,31 @@
   - _Requirements: 3.5, 6.4_
 
 - [ ] 17. Implement query cancellation
-  - Add query cancellation support in database adapters
-  - Create cancel query UI button and functionality
-  - Implement query timeout handling
-  - Add progress indicators for long-running queries
+  - [x] Add query cancellation support in database adapters
+  - [x] Create cancel query UI button and functionality
+  - [x] Implement query timeout handling
+  - [ ] Add progress indicators for long-running queries
   - _Requirements: 4.4_
 
 - [ ] 18. Add table data pagination
-  - Implement server-side pagination for large datasets
-  - Create pagination controls in data table component
-  - Add configurable page size options
-  - Optimize memory usage for large result sets
+  - [x] Implement server-side pagination for large datasets
+  - [x] Create pagination controls in data table component
+  - [ ] Add configurable page size options
+  - [ ] Optimize memory usage for large result sets
   - _Requirements: 4.5_
 
 - [ ] 19. Implement column detail display
-  - Add column information display (data type, constraints, defaults)
-  - Create column detail tooltips or info panels
-  - Show primary key and foreign key indicators
-  - Display column statistics when available
+  - [ ] Add column information display (data type, constraints, defaults)
+  - [ ] Create column detail tooltips or info panels
+  - [ ] Show primary key and foreign key indicators
+  - [ ] Display column statistics when available
   - _Requirements: 5.2, 5.3_
 
 - [ ] 20. Add application startup connection loading
-  - Implement automatic connection list loading on app start
-  - Add connection decryption during startup
-  - Create startup error handling for corrupted data
-  - Add migration support for connection data format changes
+  - [x] Implement automatic connection list loading on app start
+  - [x] Add connection decryption during startup
+  - [ ] Create startup error handling for corrupted data
+  - [ ] Add migration support for connection data format changes
   - _Requirements: 6.2_
 
 - [ ] 21. Write integration tests
@@ -225,3 +225,5 @@
   - Add tests for error scenarios and edge cases
   - Test encryption/decryption functionality
   - _Requirements: All requirements validation_
+
+- [] 22. 

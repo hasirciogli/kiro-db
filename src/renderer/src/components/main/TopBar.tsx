@@ -10,6 +10,7 @@ interface TopBarProps {
 export const TopBar = ({ onExecute, onCancel }: TopBarProps) => {
 	const activeConnectionId = useConnectionStore((s) => s.activeConnectionId)
 	const selectedTable = useDatabaseStore((s) => s.selectedTable)
+	const loading = useDatabaseStore((s) => s.loading)
 
 	return (
 		<div className="w-full h-10 border-b flex items-center justify-between px-2 bg-card">
@@ -18,10 +19,10 @@ export const TopBar = ({ onExecute, onCancel }: TopBarProps) => {
 				{selectedTable ? ` • ${selectedTable}` : ''}
 			</div>
 			<div className="flex gap-2">
-				<Button size="sm" onClick={onExecute}>
+				<Button size="sm" onClick={onExecute} disabled={loading}>
 					Execute SQL
 				</Button>
-				<Button size="sm" variant="outline" onClick={onCancel}>
+				<Button size="sm" variant="outline" onClick={onCancel} disabled={!loading}>
 					Cancel
 				</Button>
 			</div>

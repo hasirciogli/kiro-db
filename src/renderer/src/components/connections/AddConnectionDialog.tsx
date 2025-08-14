@@ -3,7 +3,7 @@ import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 import { Button } from '../ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
-import { useForm } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useUIStore } from '../../stores/ui'
@@ -13,7 +13,7 @@ const schema = z.object({
   name: z.string().min(1),
   type: z.enum(['mysql', 'postgresql']),
   host: z.string().min(1),
-  port: z.coerce.number().int().positive(),
+  port: z.number().int().positive(),
   database: z.string().min(1),
   username: z.string().min(1),
   password: z.string().min(1),
@@ -44,7 +44,7 @@ export const AddConnectionDialog = () => {
     }
   })
 
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit: SubmitHandler<FormValues> = async (values) => {
     await saveConnection(values)
     closeAddConnection()
   }
@@ -98,15 +98,20 @@ export const AddConnectionDialog = () => {
             <div className="text-xs text-destructive">Please fill all required fields.</div>
           ) : null}
           <div className="flex justify-end gap-2">
-            <Button type="button" variant="outline" onClick={closeAddConnection} disabled={isSubmitting}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={closeAddConnection}
+              disabled={isSubmitting}
+            >
               Cancel
             </Button>
-            <Button type="submit" disabled={isSubmitting}>Save</Button>
+            <Button type="submit" disabled={isSubmitting}>
+              Save
+            </Button>
           </div>
         </form>
       </DialogContent>
     </Dialog>
   )
 }
-
-
