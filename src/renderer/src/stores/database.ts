@@ -111,6 +111,8 @@ export const useDatabaseStore = create<DatabaseStoreState>((set, get) => ({
     set({ loading: true, error: null })
     try {
       const result = await window.dbapi.executeQuery(connectionId, sql, params)
+      // reset pagination and cache on ad-hoc query
+      set({ page: 1, totalRows: null, resultCache: {} })
       set({ tableData: result.rows, fields: result.fields })
       return result
     } catch (e: any) {

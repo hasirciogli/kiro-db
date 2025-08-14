@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Textarea } from '../ui/textarea'
+import Editor from '@monaco-editor/react'
 
 interface QueryEditorProps {
 	value?: string
@@ -8,19 +8,22 @@ interface QueryEditorProps {
 
 export const QueryEditor = ({ value, onChange }: QueryEditorProps) => {
 	const [local, setLocal] = useState(value ?? '')
-    useEffect(() => {
-        setLocal(value ?? '')
-    }, [value])
+	useEffect(() => {
+		setLocal(value ?? '')
+	}, [value])
 	return (
 		<div className="p-2">
-			<Textarea
+			<Editor
+				height="180px"
+				defaultLanguage="sql"
+				theme="vs-dark"
 				value={local}
-				onChange={(e) => {
-					setLocal(e.target.value)
-					onChange?.(e.target.value)
+				onChange={(value) => {
+					const v = value ?? ''
+					setLocal(v)
+					onChange?.(v)
 				}}
-				placeholder="-- Write your SQL here"
-				className="min-h-[120px]"
+				options={{ minimap: { enabled: false }, fontSize: 14 }}
 			/>
 		</div>
 	)

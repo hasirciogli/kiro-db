@@ -3,7 +3,7 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 
 export const DataTable = () => {
-	const { fields, tableData, page, pageSize, totalRows, setPage, selectRow, schema, selectedTable } = useDatabaseStore()
+    const { fields, tableData, page, pageSize, totalRows, setPage, selectRow, schema, selectedTable } = useDatabaseStore()
 	if (fields.length === 0) return null
 	return (
 		<div className="p-2 overflow-auto">
@@ -52,14 +52,14 @@ export const DataTable = () => {
 					))}
 				</tbody>
 			</table>
-			{totalRows != null ? (
+                {totalRows != null ? (
 				<Pagination className="mt-2">
 					<PaginationContent>
 						<PaginationItem>
 							<PaginationPrevious href="#" onClick={(e) => { e.preventDefault(); setPage(Math.max(1, page - 1)) }} />
 						</PaginationItem>
 						<PaginationItem>
-							<PaginationLink isActive size="default">Page {page}</PaginationLink>
+                                <PaginationLink isActive size="default">Page {page} / {Math.max(1, Math.ceil(totalRows / pageSize))}</PaginationLink>
 						</PaginationItem>
 						<PaginationItem>
 							<PaginationNext href="#" onClick={(e) => { e.preventDefault(); const max = Math.max(1, Math.ceil(totalRows / pageSize)); setPage(Math.min(max, page + 1)) }} />

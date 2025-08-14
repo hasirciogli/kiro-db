@@ -106,34 +106,34 @@
 
 - [ ] 9. Create main container components
   - [x] 9.1 Build context-aware top bar
-    - [ ] Create top bar showing active connection and selected object
-    - [ ] Add context-specific action buttons (Execute SQL, Add Row, etc.)
-    - [ ] Implement button state management based on selection
+    - [x] Create top bar showing active connection and selected object
+    - [x] Add context-specific action buttons (Execute SQL, Add Row, etc.)
+    - [x] Implement button state management based on selection
     - _Requirements: 4.1, 2.1_
   - [x] 9.2 Implement data table component
-    - [ ] Create data table for displaying table contents
-    - [ ] Add column headers with type information
-    - [ ] Implement row selection and highlighting
-    - [ ] Add pagination for large datasets
+    - [x] Create data table for displaying table contents
+    - [x] Add column headers with type information
+    - [x] Implement row selection and highlighting
+    - [x] Add pagination for large datasets
     - _Requirements: 4.2, 4.5, 2.2_
   - [x] 9.3 Build query editor
-    - [ ] Create SQL query editor with syntax highlighting
-    - [ ] Add query execution button and loading states
-    - [ ] Implement query result display
+    - [x] Create SQL query editor with syntax highlighting
+    - [x] Add query execution button and loading states
+    - [x] Implement query result display
     - [ ] Add query history functionality
     - _Requirements: 4.1, 4.2, 4.3_
 
 - [ ] 10. Implement row detail sheet
   - [x] 10.1 Create side sheet component
-    - [ ] Build slide-out sheet for row details
-    - [ ] Display all column values in editable form
-    - [ ] Add save and cancel buttons
+    - [x] Build slide-out sheet for row details
+    - [x] Display all column values in editable form
+    - [x] Add save and cancel buttons
     - [ ] Implement form validation
     - _Requirements: 4.1, 2.2_
   - [ ] 10.2 Add row CRUD operations
-    - [ ] Implement row update functionality
-    - [ ] Add row deletion with confirmation
-    - [ ] Create new row insertion
+    - [x] Implement row update functionality
+    - [x] Add row deletion with confirmation (basic delete action)
+    - [x] Create new row insertion
     - [ ] Add optimistic updates with error handling
     - _Requirements: 4.1, 4.2_
 
