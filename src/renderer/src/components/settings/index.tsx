@@ -1,16 +1,17 @@
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@renderer/components/ui/dialog'
+import { Button } from '@renderer/components/ui/button'
+import { Input } from '@renderer/components/ui/input'
+import { Label } from '@renderer/components/ui/label'
+import { Checkbox } from '@renderer/components/ui/checkbox'
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@renderer/components/ui/dialog"
-import { Button } from "@renderer/components/ui/button"
-import { Input } from "@renderer/components/ui/input"
-import { Label } from "@renderer/components/ui/label"
-import { Checkbox } from "@renderer/components/ui/checkbox"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@renderer/components/ui/select"
-import { Separator } from "@renderer/components/ui/separator"
-import { useSettings } from "@renderer/hooks/settings"
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@renderer/components/ui/select'
+import { Separator } from '@renderer/components/ui/separator'
+import { useSettings } from '@renderer/hooks/settings'
 
 export const SettingsDialogBase = () => {
   const { open, setOpen } = useSettings() as {
@@ -30,11 +31,15 @@ export const SettingsDialogBase = () => {
             <h4 className="text-sm font-medium">Connection</h4>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <Label htmlFor="host" className="text-xs">Host</Label>
+                <Label htmlFor="host" className="text-xs">
+                  Host
+                </Label>
                 <Input id="host" placeholder="localhost" className="h-8" />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="port" className="text-xs">Port</Label>
+                <Label htmlFor="port" className="text-xs">
+                  Port
+                </Label>
                 <Input id="port" type="number" placeholder="5432" className="h-8" />
               </div>
             </div>
@@ -46,17 +51,23 @@ export const SettingsDialogBase = () => {
             <h4 className="text-sm font-medium">Query</h4>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <Label htmlFor="timeout" className="text-xs">Timeout (s)</Label>
+                <Label htmlFor="timeout" className="text-xs">
+                  Timeout (s)
+                </Label>
                 <Input id="timeout" type="number" placeholder="30" className="h-8" />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="rows" className="text-xs">Max Rows</Label>
+                <Label htmlFor="rows" className="text-xs">
+                  Max Rows
+                </Label>
                 <Input id="rows" type="number" placeholder="1000" className="h-8" />
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="autocommit" />
-              <Label htmlFor="autocommit" className="text-xs">Auto-commit</Label>
+              <Label htmlFor="autocommit" className="text-xs">
+                Auto-commit
+              </Label>
             </div>
           </div>
 
@@ -94,7 +105,9 @@ export const SettingsDialogBase = () => {
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="syntax" defaultChecked />
-              <Label htmlFor="syntax" className="text-xs">Syntax highlighting</Label>
+              <Label htmlFor="syntax" className="text-xs">
+                Syntax highlighting
+              </Label>
             </div>
           </div>
         </div>

@@ -10,11 +10,10 @@ function App(): React.JSX.Element {
   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
   return (
-    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-      <main className='w-full h-full bg-primary'>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <main className="w-full h-full bg-primary">
         <StaticLeftBar />
       </main>
-
 
       {/* Modals or others */}
       <SettingsDialogBase />
