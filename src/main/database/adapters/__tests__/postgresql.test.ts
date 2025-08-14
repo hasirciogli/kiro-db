@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PostgreSQLAdapter } from '../postgresql'
 import { DatabaseConnection } from '../../../../shared/types/database'
 import { jest, describe, beforeEach, afterEach, expect, it } from '@jest/globals'
@@ -218,15 +217,17 @@ describe('PostgreSQLAdapter', () => {
     it('should get database schema', async () => {
       // Mock all the queries for schema introspection
       const mockQuery = mockClient.query as jest.Mock
-      mockQuery
-        .mockImplementationOnce(() =>
-          Promise.resolve({
-            rows: [{ table_name: 'users' }, { table_name: 'posts' }]
+
+      // Mock all queries with a general implementation based on SQL content
+      mockQuery.mockImplementation((sql: any) => {
+        if (sql.includes('information_schema.tables')) {
+          // Tables query
+          return Promise.resolve({
+            rows: [{ table_name: 'users' }]
           })
-        )
-        // Mock columns query for users table
-        .mockImplementationOnce(() =>
-          Promise.resolve({
+        } else if (sql.includes('information_schema.columns')) {
+          // Columns query
+          return Promise.resolve({
             rows: [
               {
                 column_name: 'id',
@@ -235,51 +236,48 @@ describe('PostgreSQLAdapter', () => {
                 column_default: "nextval('users_id_seq'::regclass)",
                 is_primary_key: true,
                 is_auto_increment: true
-              }
-            ]
-          })
-        )
-        // Mock indexes query for users table
-        .mockImplementationOnce(() => Promise.resolve({ rows: [] }))
-        // Mock foreign keys query for users table
-        .mockImplementationOnce(() => Promise.resolve({ rows: [] }))
-        // Mock row count query for users table
-        .mockImplementationOnce(() => Promise.resolve({ rows: [{ count: '10' }] }))
-        // Mock columns query for posts table
-        .mockImplementationOnce(() =>
-          Promise.resolve({
-            rows: [
+              },
               {
-                column_name: 'id',
-                data_type: 'integer',
-                is_nullable: 'NO',
-                column_default: "nextval('posts_id_seq'::regclass)",
-                is_primary_key: true,
-                is_auto_increment: true
+                column_name: 'name',
+                data_type: 'varchar',
+                is_nullable: 'YES',
+                column_default: null,
+                is_primary_key: false,
+                is_auto_increment: false
               }
             ]
           })
-        )
-        // Mock indexes query for posts table
-        .mockImplementationOnce(() => Promise.resolve({ rows: [] }))
-        // Mock foreign keys query for posts table
-        .mockImplementationOnce(() => Promise.resolve({ rows: [] }))
-        // Mock row count query for posts table
-        .mockImplementationOnce(() => Promise.resolve({ rows: [{ count: '5' }] }))
-        // Mock views query
-        .mockImplementationOnce(() => Promise.resolve({ rows: [] }))
-        // Mock functions query
-        .mockImplementationOnce(() => Promise.resolve({ rows: [] }))
-        // Mock procedures query
-        .mockImplementationOnce(() => Promise.resolve({ rows: [] }))
+        } else if (sql.includes('pg_class t') && sql.includes('pg_index ix')) {
+          // Indexes query
+          return Promise.resolve({ rows: [] })
+        } else if (sql.includes('information_schema.table_constraints')) {
+          // Foreign keys query
+          return Promise.resolve({ rows: [] })
+        } else if (sql.includes('COUNT(*)')) {
+          // Row count query
+          return Promise.resolve({ rows: [{ count: '10' }] })
+        } else if (sql.includes('information_schema.views')) {
+          // Views query
+          return Promise.resolve({ rows: [] })
+        } else if (sql.includes('pg_proc p') && sql.includes("p.prokind = 'f'")) {
+          // Functions query
+          return Promise.resolve({ rows: [] })
+        } else if (sql.includes('pg_proc p') && sql.includes("p.prokind = 'p'")) {
+          // Procedures query
+          return Promise.resolve({ rows: [] })
+        }
+        return Promise.resolve({ rows: [] })
+      })
 
       const schema = await adapter.getSchema()
 
-      expect(schema.tables).toHaveLength(2)
+      expect(schema.tables).toHaveLength(1)
       expect(schema.tables[0].name).toBe('users')
       expect(schema.tables[0].columns[0].name).toBe('id')
       expect(schema.tables[0].columns[0].isPrimaryKey).toBe(true)
       expect(schema.tables[0].columns[0].isAutoIncrement).toBe(true)
+      expect(schema.tables[0].columns[1].name).toBe('name')
+      expect(schema.tables[0].columns[1].isAutoIncrement).toBe(false)
       expect(schema.tables[0].rowCount).toBe(10)
     })
 

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client } from 'pg'
 import { DatabaseAdapter } from './base'
 import {
@@ -53,7 +52,6 @@ export class PostgreSQLAdapter extends DatabaseAdapter {
         this.updateConnectionStatus('disconnected')
       }
     } catch (error) {
-      console.error('Error disconnecting from PostgreSQL:', error)
       this.updateConnectionStatus(
         'error',
         error instanceof Error ? error.message : (error as string)
@@ -120,7 +118,7 @@ export class PostgreSQLAdapter extends DatabaseAdapter {
   }
 
   isConnected(): boolean {
-    return this.connection && this.connectionStatus.status === 'connected'
+    return !!(this.connection && this.connectionStatus.status === 'connected')
   }
 
   async cancelQuery(): Promise<void> {
