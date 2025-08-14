@@ -152,28 +152,28 @@
 
 - [ ] 12. Add error handling and loading states
   - [ ] 12.1 Implement global error handling
-    - Create error boundary components
-    - Add toast notifications for errors
-    - Implement retry mechanisms for failed operations
+    - [ ] Create error boundary components
+    - [x] Add toast notifications for errors
+    - [ ] Implement retry mechanisms for failed operations
     - _Requirements: 3.3, 4.3, 5.5_
   - [x] 12.2 Add loading states throughout UI
-    - Implement loading spinners for all async operations
-    - Add skeleton loaders for data tables
-    - Create progress indicators for long-running queries
+    - [x] Implement loading spinners for all async operations
+    - [x] Add skeleton loaders for data tables
+    - [ ] Create progress indicators for long-running queries
     - _Requirements: 5.4, 4.4_
 
 - [ ] 13. Integrate all components in main App
   - [x] Update App.tsx to include all new components
-  - Setup proper layout with sidebars and main container
-  - Implement responsive design considerations
-  - Add keyboard shortcuts for common actions
+  - [x] Setup proper layout with sidebars and main container
+  - [ ] Implement responsive design considerations
+  - [ ] Add keyboard shortcuts for common actions
   - _Requirements: 2.1, 4.1, 5.1_
 
 - [ ] 14. Add comprehensive error handling and validation
-  - Implement input validation for all forms
-  - Add network error handling and retry logic
-  - Create user-friendly error messages
-  - Add logging for debugging purposes
+  - [x] Implement input validation for all forms (connection form)
+  - [ ] Add network error handling and retry logic
+  - [x] Create user-friendly error messages (toasts)
+  - [ ] Add logging for debugging purposes
   - _Requirements: 1.5, 3.3, 4.3, 5.5_
 
 - [ ] 15. Implement SSL/TLS connection support
@@ -205,9 +205,9 @@
   - _Requirements: 4.5_
 
 - [ ] 19. Implement column detail display
-  - [ ] Add column information display (data type, constraints, defaults)
-  - [ ] Create column detail tooltips or info panels
-  - [ ] Show primary key and foreign key indicators
+  - [x] Add column information display (data type, constraints, defaults)
+  - [x] Create column detail tooltips or info panels
+  - [x] Show primary key and foreign key indicators
   - [ ] Display column statistics when available
   - _Requirements: 5.2, 5.3_
 

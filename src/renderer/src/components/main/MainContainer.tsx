@@ -5,6 +5,7 @@ import { DataTable } from './DataTable'
 import { RowDetailSheet } from './RowDetailSheet'
 import { useConnectionStore } from '../../stores/connection'
 import { useDatabaseStore } from '../../stores/database'
+import { toast } from 'sonner'
 
 export const MainContainer = () => {
 	const [sql, setSql] = useState('SELECT 1;')
@@ -13,13 +14,23 @@ export const MainContainer = () => {
 
 	const onExecute = async () => {
 		if (!activeConnectionId) return
-		await executeQuery(activeConnectionId, sql)
+    try {
+      const res = await executeQuery(activeConnectionId, sql)
+      toast.success(`Query executed in ${res.executionTime}ms, rows: ${res.rowCount}`)
+    } catch (e: any) {
+      toast.error(e?.message ?? 'Query failed')
+    }
 	}
 
 	const onCancel = async () => {
 		if (!activeConnectionId) return
 		// IPC cancel hook
-		await window.dbapi.cancelQuery(activeConnectionId)
+    try {
+      await window.dbapi.cancelQuery(activeConnectionId)
+      toast.message('Query cancelled')
+    } catch (e: any) {
+      toast.error(e?.message ?? 'Cancel failed')
+    }
 	}
 
 	// Auto-load when selecting a table
