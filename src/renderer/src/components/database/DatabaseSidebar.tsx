@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useConnectionStore } from '../../stores/connection'
 import { useDatabaseStore } from '../../stores/database'
 import { Separator } from '../ui/separator'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { ScrollArea } from '../ui/scroll-area'
 
 export const DatabaseSidebar = () => {
@@ -24,17 +25,24 @@ export const DatabaseSidebar = () => {
 				<div className="space-y-2">
 					<h4 className="text-xs font-semibold opacity-70">Tables</h4>
 					<div className="space-y-1">
-						{schema?.tables.map((t) => (
-							<button
-								key={t.name}
-								onClick={() => void selectTable(t.name)}
-								className={`w-full text-left text-sm px-2 py-1 rounded ${
-									selectedTable === t.name ? 'bg-muted' : 'hover:bg-muted'
-								}`}
-							>
-								{t.name}
-							</button>
-						))}
+                    {schema?.tables.map((t) => (
+                        <DropdownMenu key={t.name}>
+                            <DropdownMenuTrigger asChild>
+                                <button
+                                    onClick={() => void selectTable(t.name)}
+                                    className={`w-full text-left text-sm px-2 py-1 rounded ${
+                                        selectedTable === t.name ? 'bg-muted' : 'hover:bg-muted'
+                                    }`}
+                                >
+                                    {t.name}
+                                </button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent side="right">
+                                <DropdownMenuItem onClick={() => void selectTable(t.name)}>Open</DropdownMenuItem>
+                                <DropdownMenuItem disabled>Refresh</DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    ))}
 					</div>
 					<Separator className="my-2" />
 					<h4 className="text-xs font-semibold opacity-70">Views</h4>

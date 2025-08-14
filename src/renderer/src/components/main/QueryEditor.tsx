@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Textarea } from '../ui/textarea'
 
 interface QueryEditorProps {
@@ -8,6 +8,9 @@ interface QueryEditorProps {
 
 export const QueryEditor = ({ value, onChange }: QueryEditorProps) => {
 	const [local, setLocal] = useState(value ?? '')
+    useEffect(() => {
+        setLocal(value ?? '')
+    }, [value])
 	return (
 		<div className="p-2">
 			<Textarea

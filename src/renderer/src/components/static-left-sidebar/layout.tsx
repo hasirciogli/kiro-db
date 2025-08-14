@@ -14,8 +14,7 @@ export const StaticLeftBar = () => {
     connect,
     deleteConnection,
     testConnection
-  } =
-    useConnectionStore()
+  } = useConnectionStore()
 
   useEffect(() => {
     void loadConnections()
@@ -49,6 +48,7 @@ export const StaticLeftBar = () => {
             <ConnectionIcon
               label={c.name}
               active={activeConnectionId === c.id}
+              status={activeConnectionId === c.id ? 'connected' : 'disconnected'}
               onClick={() => {
                 setActiveConnection(c.id)
                 void connect(c.id)
