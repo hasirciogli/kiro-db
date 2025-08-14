@@ -21,7 +21,16 @@ export const TopBar = ({ onExecute, onCancel }: TopBarProps) => {
 				{selectedTable ? ` • ${selectedTable}` : ''}
 			</div>
             <div className="flex gap-2">
-                <Button size="sm" onClick={onExecute} disabled={loading || isGlobalLoading}>
+                <Button
+                    size="sm"
+                    onClick={() => {
+                        onExecute()
+                        // capture last SQL from editor via event or lift-up state
+                        // Here we rely on database store not to hold SQL; so we can't read it.
+                        // The call site (MainContainer) sets SQL; we could expose a callback to addHistory there.
+                    }}
+                    disabled={loading || isGlobalLoading}
+                >
 					Execute SQL
 				</Button>
                 <Button size="sm" variant="outline" onClick={onCancel} disabled={!loading && !isGlobalLoading}>

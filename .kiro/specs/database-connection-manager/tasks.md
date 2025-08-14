@@ -120,7 +120,7 @@
     - [x] Create SQL query editor with syntax highlighting
     - [x] Add query execution button and loading states
     - [x] Implement query result display
-    - [ ] Add query history functionality
+    - [x] Add query history functionality
     - _Requirements: 4.1, 4.2, 4.3_
 
 - [ ] 10. Implement row detail sheet
