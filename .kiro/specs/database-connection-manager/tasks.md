@@ -62,14 +62,14 @@
 
 - [ ] 6. Create Zustand stores for state management
   - [x] 6.1 Implement connection store
-    - [ ] Create connection store with CRUD operations
-    - [ ] Add connection status management
-    - [ ] Implement IPC integration for connection operations
+    - [x] Create connection store with CRUD operations
+    - [x] Add connection status management
+    - [x] Implement IPC integration for connection operations
     - _Requirements: 1.1, 2.1, 3.1_
   - [x] 6.2 Implement database store
-    - [ ] Create database store for schema and table data
-    - [ ] Add selected object tracking (table, view, function)
-    - [ ] Implement data loading and caching
+    - [x] Create database store for schema and table data
+    - [x] Add selected object tracking (table, view, function)
+    - [x] Implement data loading and caching
     - _Requirements: 5.1, 4.1_
   - [x] 6.3 Create UI store
     - [ ] Implement sidebar visibility states
@@ -79,16 +79,16 @@
 
 - [ ] 7. Build left sidebar components
   - [x] 7.1 Create connection sidebar layout
-    - [ ] Build fixed left sidebar with connection list
-    - [ ] Add connection icons with database type indicators
-    - [ ] Implement hover tooltips for connection names
-    - [ ] Add settings button at bottom
+    - [x] Build fixed left sidebar with connection list
+    - [x] Add connection icons with database type indicators
+    - [x] Implement hover tooltips for connection names
+    - [x] Add settings button at bottom
     - _Requirements: 2.1, 2.2_
   - [x] 7.2 Implement connection management
-    - [ ] Create add connection button and modal
-    - [ ] Build connection form with validation
-    - [ ] Add connection status indicators (connected/disconnected)
-    - [ ] Implement connection context menu (edit, delete, test)
+    - [x] Create add connection button and modal
+    - [x] Build connection form with validation
+    - [x] Add connection status indicators (connected/disconnected)
+    - [x] Implement connection context menu (edit, delete, test)
     - _Requirements: 1.1, 1.4, 2.3, 2.4_
 
 - [ ] 8. Build database sidebar components
@@ -226,4 +226,4 @@
   - [ ] Test encryption/decryption functionality
   - _Requirements: All requirements validation_
 
-- [] 22. 
+- [] 22.
